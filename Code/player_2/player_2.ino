@@ -77,11 +77,9 @@ void IRAM_ATTR temps_int(){
 
 void setup() {
   //Initialisation
-  pinMode(BUTTON_A, INPUT_PULLUP);
-
   timer=timerBegin(1000000);
-  timerAttachInterrupt(timer,&temps_int);
-  timerAlarm(timer,1000000,true,0);
+  timerAttachInterrupt(timer, &temps_int);
+  timerAlarm(timer, 1000000, true, 0);
 
   Serial.begin(115200);
 
@@ -144,7 +142,7 @@ void waitConnexion(){
 void waitStart(){
   String text="En attente de\ndebut de partie...";
 
-  printTextOnScreen(text, 100, 0.5);
+  printTextOnScreen(text, 500, 0.5);
 }
 
 void printTextOnScreen(String text, int time, float size) {

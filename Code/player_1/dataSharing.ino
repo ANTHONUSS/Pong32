@@ -69,14 +69,15 @@ void onId2Recieved(){
     scoreP2=0;
     gameStarted = false;
     infini=false;
-    printTextOnScreen(convert_temps(), 2000);
+    String texte = "Temps ecoule : " + convert_temps();
+    printTextOnScreen(texte, 2000, 1);
     waitStart();
     
   } else if(scoreP1 == winScore) {
-    String text = "P1 à gagné !";
     scoreP1=0;
     scoreP2=0;
     gameStarted = false;
+    String text = "P1 a gagne !";
     printTextOnScreen(text, 4000, 1);
 
     waitStart();

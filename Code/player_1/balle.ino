@@ -60,10 +60,12 @@ void Balle::verifiRebondsPad(){
         scoreP2=0;
         gameStarted = false;
         infini=false;
-        printTextOnScreen(convert_temps(), 2000);
+        String texte = "Temps ecoule : " + convert_temps();
+        printTextOnScreen(texte, 2000, 1);
         waitStart();
-      }else if(scoreP2 == winScore) {
-        String text = "P2 à gagné !";
+
+      } else if(scoreP2 == winScore) {
+        String text = "P2 a gagne !";
         scoreP1=0;
         scoreP2=0;
         ballX=64;

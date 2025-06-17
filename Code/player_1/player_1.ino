@@ -79,11 +79,11 @@ void IRAM_ATTR temps_int(){
 void setup() {
   //Initialisation
   pinMode(BUTTON_A, INPUT_PULLUP);
-  //cleia
   pinMode(BUTTON_B, INPUT_PULLUP);
+
   timer=timerBegin(1000000);
-  timerAttachInterrupt(timer,&temps_int);
-  timerAlarm(timer,1000000,true,0);  
+  timerAttachInterrupt(timer, &temps_int);
+  timerAlarm(timer, 1000000, true, 0);  
 
   Serial.begin(115200);
 
@@ -144,22 +144,30 @@ void waitConnexion(){
 }
 
 void waitStart(){
-  String text="Appuyez sur A pour\ncommencer...";
-
-  printTextOnScreen(text, 100, 0.5);
+  String txtA = "-> Mode duel";
+  String txtB = "-> Mode infini";
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 9);
+  display.print(txtA);
+  display.setCursor(0, 29);
+  display.print(txtB);
+  display.display();
 
   balle.randBall();
 
   while(!gameStarted){
-    int buttonInput = !digitalRead(BUTTON_A);
+    int inputA = !digitalRead(BUTTON_A);
     int inputB= !digitalRead(BUTTON_B);
 
-    if(buttonInput) {
+    if(inputA) {
       sendBallData();
       gameStarted = true;
 
     }
-    //cleia
+
+
     if(inputB){
       gameStarted=true;
       infini=true;
