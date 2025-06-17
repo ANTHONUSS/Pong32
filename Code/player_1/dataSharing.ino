@@ -20,6 +20,7 @@ void sendBallData(){
   ballMessageSent.ballDX = balle.getBalleDX();
   ballMessageSent.ballDY = balle.getBalleDY();
   ballMessageSent.ballSpeed = balle.getBalleSpeed();
+  ballMessageSent.modeInfini=infini;
   // Envoi à P2
   esp_err_t res = esp_now_send(peersMAC, (uint8_t *)&ballMessageSent, sizeof(ballMessageSent));
   if (res != ESP_OK) {

@@ -31,6 +31,7 @@ typedef struct BallData {
   float ballDX;
   float ballDY;
   int ballSpeed;
+  bool modeInfini;
 } __attribute__((packed)) BallData;
 
 typedef struct WinData {
@@ -57,7 +58,10 @@ bool gameStarted = false;
 int scoreP1 = 0;
 int scoreP2 = 0;
 unsigned short int const winScore = 1;
-
+//cleia
+bool infini=false;
+int temps=0;
+hw_timer_t* timer = NULL;
 
 // Pad
 #include "pad.h"
@@ -67,10 +71,18 @@ Pad pad;
 #include "balle.h"
 Balle balle;
 
+//Temps écoulé (mode infini)
+void IRAM_ATTR temps_int(){
+  temps++;
+}
+
 
 void setup() {
   //Initialisation
   pinMode(BUTTON_A, INPUT_PULLUP);
+
+  timer=timerBegin(1000000);
+  timerAttachInterrupt(timer,&temps_int);
 
   Serial.begin(115200);
 
@@ -110,6 +122,9 @@ void loop() {
 
     // Draw des elements
     display.clearDisplay();
+    if(infini){
+      affiche_temps();
+    }
     balle.drawBalle();
     pad.drawPad();
     display.display();
@@ -151,4 +166,14 @@ void printTextOnScreen(String text, int time){
   Serial.println(text);
 
   delay(time);
+}
+
+
+String convert_temps(){
+  return String(temps/60)+":"+String(temps%60);
+}
+
+void affiche_temps(){
+  display.setCursor(0,0);
+  display.print(convert_temps());
 }
