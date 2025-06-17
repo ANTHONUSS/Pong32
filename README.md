@@ -14,10 +14,10 @@ Deux modes de jeu sont présents
 Les composants **minimum** nécessaires pour jouer au jeu sont :
 
 - Deux ESP32 avec leur GROVE Shield et leur écran OLED :
-![[ESP32.jpg|400]]
+[ESP32.jpg](Images/ESP32.jpg)
 
 - Deux joysticks :
-![[Joystick.jpg|400]]
+[Joystick.jpg](Images/Joystick.jpg)
 
 ## Branchement
 
@@ -29,9 +29,10 @@ Le Joystick doit être branché De la façon suivante à l'ESP32 :
 | A3                | Y                  |
 | GND               | GND                |
 | 3V3               | VCC                |
+
 Si jamais vous possédez un **GROVE Shield** comme sur l'image précédente, vous pouvez simplement le brancher comme ci-dessous :
 
-![[Branchement.jpg|400]]
+[Branchement.jpg](Images/Branchement.jpg)
 
 ## Installation
 ### Prérequis :
@@ -73,6 +74,7 @@ void loop() {}
 uint8_t peersMAC[] = {0x94, 0xB9, 0x7E, 0x6B, 0x12, 0xE0};
 ```
 *(Ceci correspond à l'adresse MAC `94:B9:7E:6B:12:E0`)*
+
 7. Sauvegardez, puis téléversez les deux programmes `player_1` et `player_2` dans chaque ESP32 respectif.
 
 Le jeu est maintenant prêt à fonctionner !
@@ -87,4 +89,5 @@ Le jeu est maintenant prêt à fonctionner !
 # Licence et crédits
 
 Ce projet à été réalisé par **Dechaumet Anthony** et **Cléïa Barrallon** dans le cadre de la **SAÉ 203** à **l'IUT Lyon 1 - département de Bourg en Bresse**.
+
 Ce projet est sous la **MIT Licence**.
