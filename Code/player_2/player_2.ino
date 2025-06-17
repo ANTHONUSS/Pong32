@@ -118,13 +118,15 @@ void loop() {
     balle.verifiRebondsPad();
 
     // Draw des elements
-    display.clearDisplay();
-    if(infini){
-      affiche_temps();
+    if (gameStarted){ // 2eme if, ca sinon la dernière frame est affichée à la fin d'une partie
+      display.clearDisplay();
+      if(infini){
+        affiche_temps();
+      }
+      balle.drawBalle();
+      pad.drawPad();
+      display.display();
     }
-    balle.drawBalle();
-    pad.drawPad();
-    display.display();
   }
 }
 
@@ -142,7 +144,7 @@ void waitConnexion(){
 void waitStart(){
   String text="En attente de\ndebut de partie...";
 
-  printTextOnScreen(text, 500, 0.5);
+  printTextOnScreen(text, 100, 0.5);
 }
 
 void printTextOnScreen(String text, int time, float size) {
