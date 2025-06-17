@@ -14,10 +14,12 @@ Deux modes de jeu sont présents
 Les composants **minimum** nécessaires pour jouer au jeu sont :
 
 - Deux ESP32 avec leur GROVE Shield et leur écran OLED :
-[ESP32.jpg](Images/ESP32.jpg)
+
+<img src="Images/ESP32.jpg" alt="ESP32" width="400">
 
 - Deux joysticks :
-[Joystick.jpg](Images/Joystick.jpg)
+
+<img src="Images/Joystick.jpg" alt="Joystick" width="400">
 
 ## Branchement
 
@@ -32,7 +34,7 @@ Le Joystick doit être branché De la façon suivante à l'ESP32 :
 
 Si jamais vous possédez un **GROVE Shield** comme sur l'image précédente, vous pouvez simplement le brancher comme ci-dessous :
 
-[Branchement.jpg](Images/Branchement.jpg)
+<img src="Images/Branchement.jpg" alt="Branchement" width="400">
 
 ## Installation
 ### Prérequis :
