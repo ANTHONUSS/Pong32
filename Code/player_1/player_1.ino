@@ -56,7 +56,7 @@ bool connected = false;
 bool gameStarted = false;
 int scoreP1 = 0;
 int scoreP2 = 0;
-unsigned short int const winScore = 1;
+unsigned short int const winScore = 10;
 //cleia
 bool infini=false;
 int temps=0;
@@ -83,7 +83,8 @@ void setup() {
   //cleia
   pinMode(BUTTON_B, INPUT_PULLUP);
   timer=timerBegin(1000000);
-  timerAttachInterrupt(timer,&temps_int);  
+  timerAttachInterrupt(timer,&temps_int);
+  timerAlarm(timer,1000000,true,0);  
 
   Serial.begin(115200);
 
@@ -162,10 +163,10 @@ void waitStart(){
     }
     //cleia
     if(inputB){
-      sendBallData();
       gameStarted=true;
       infini=true;
       temps=0;
+      sendBallData();
     }
 
   }

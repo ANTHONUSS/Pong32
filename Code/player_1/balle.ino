@@ -53,8 +53,15 @@ void Balle::verifiRebondsPad(){
       
       scoreP2++;
       sendWinData();
-
-      if(scoreP2 == winScore) {
+      if(infini){
+      scoreP1=0;
+      scoreP2=0;
+      gameStarted = false;
+      infini=false;
+      printTextOnScreen(convert_temps(), 2000);
+      waitStart();
+      
+    }else if(scoreP2 == winScore) {
         String text = "P2 à gagné !";
         scoreP1=0;
         scoreP2=0;

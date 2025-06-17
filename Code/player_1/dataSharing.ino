@@ -70,9 +70,10 @@ void onId2Recieved(){
     scoreP2=0;
     gameStarted = false;
     infini=false;
-    printTextOnScreen(convert_temps(), 4000);
-  }
-  if(scoreP1 == winScore) {
+    printTextOnScreen(convert_temps(), 2000);
+    waitStart();
+    
+  }else if(scoreP1 == winScore) {
     String text = "P1 à gagné !";
     scoreP1=0;
     scoreP2=0;

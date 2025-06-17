@@ -57,7 +57,7 @@ bool connected = false;
 bool gameStarted = false;
 int scoreP1 = 0;
 int scoreP2 = 0;
-unsigned short int const winScore = 1;
+unsigned short int const winScore = 10;
 //cleia
 bool infini=false;
 int temps=0;
@@ -83,6 +83,7 @@ void setup() {
 
   timer=timerBegin(1000000);
   timerAttachInterrupt(timer,&temps_int);
+  timerAlarm(timer,1000000,true,0);
 
   Serial.begin(115200);
 
@@ -146,11 +147,6 @@ void waitStart(){
   String text="En attente de début de partie...";
 
   printTextOnScreen(text, 0);
-
-  while(!gameStarted){
-    Serial.print('.');
-    delay(500);
-  }
 }
 
 void printTextOnScreen(String text, int time){
