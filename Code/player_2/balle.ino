@@ -32,21 +32,28 @@ void Balle::verifiRebondsPad(){
     } else {
       
       scoreP1++;
-      ballX=50;
       sendWinData();
 
       if(scoreP1 == winScore) {
         String text = "P1 à gagné !";
         scoreP1=0;
         scoreP2=0;
+        ballX=0;
+        ballDX=0;
+        ballY=-100;
         gameStarted = false;
-        printTextOnScreen(text, 4000);
+        printTextOnScreen(text, 4000, 1);
 
 
         waitStart();
       } else {
+        ballX=0;
+        ballDX=0;
+        ballY=-100;
         String text = "P1 - " + String(scoreP1) + " | " + String(scoreP2) + " - P2";
-        printTextOnScreen(text, 2000);
+        gameStarted = false;
+        printTextOnScreen(text, 2000, 1);
+        gameStarted = true;
       }
     }
     

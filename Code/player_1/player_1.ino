@@ -55,7 +55,7 @@ bool connected = false;
 bool gameStarted = false;
 int scoreP1 = 0;
 int scoreP2 = 0;
-unsigned short int const winScore = 1;
+unsigned short int const winScore = 10;
 
 
 // Pad
@@ -118,7 +118,7 @@ void loop() {
 void waitConnexion(){
   String text="En attende de P2...";
 
-  printTextOnScreen(text, 0);
+  printTextOnScreen(text, 100, 1);
 
   while(!connected) {
     sendStartData();
@@ -127,9 +127,9 @@ void waitConnexion(){
 }
 
 void waitStart(){
-  String text="Appuyez sur A pour commencer...";
+  String text="Appuyez sur A pour\ncommencer...";
 
-  printTextOnScreen(text, 0);
+  printTextOnScreen(text, 100, 0.5);
 
   balle.randBall();
 
@@ -145,18 +145,48 @@ void waitStart(){
   }
 }
 
-void printTextOnScreen(String text, int time){
+void printTextOnScreen(String text, int time, float size) {
   display.clearDisplay();
-  int textWidth = text.length() * 6;
-  int x = (displayWidth - textWidth) / 2;
-  int y = displayHeight / 2;
-  display.setCursor(x, y);
-  display.setTextColor(WHITE);
-  display.print(text);
+
+  const int lineSpacing = 5; // Espacement vertical entre les lignes
+  const int charHeight = 8;  // Hauteur d'un caractère de base (pour le lineHeight)
+
+  // Séparer le texte en lignes par '\n'
+  std::vector<String> lines;
+  int start = 0;
+  while (start < text.length()) {
+    int newlineIndex = text.indexOf('\n', start);
+    if (newlineIndex == -1) newlineIndex = text.length();
+    lines.push_back(text.substring(start, newlineIndex));
+    start = newlineIndex + 1;
+  }
+
+  // Calculer la hauteur totale
+  int lineHeight = charHeight * size + lineSpacing;
+  int totalTextHeight = lines.size() * lineHeight - lineSpacing;
+  int startY = (displayHeight - totalTextHeight) / 2;
+
+  // Afficher chaque ligne centrée
+  for (size_t i = 0; i < lines.size(); i++) {
+    String line = lines[i];
+    int16_t x1, y1;
+    uint16_t w, h;
+
+    display.setTextSize(size);
+    display.getTextBounds(line, 0, 0, &x1, &y1, &w, &h);
+
+    int x = (displayWidth - w) / 2;
+    int y = startY + i * lineHeight;
+
+    display.setCursor(x, y);
+    display.setTextColor(WHITE);
+    display.print(line);
+  }
+
   display.display();
-
   Serial.println(text);
-
   delay(time);
 }
+
+
 

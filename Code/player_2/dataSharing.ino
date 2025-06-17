@@ -67,17 +67,17 @@ void onId2Recieved(){
   scoreP2++;
 
   if(scoreP2 == winScore) {
-    String text = "P2 à gagné !";
+    String text = "P2 a gagne !";
     scoreP1=0;
     scoreP2=0;
     gameStarted = false;
-    printTextOnScreen(text, 4000);
+    printTextOnScreen(text, 4000, 1);
 
     waitStart();
   } else {
     String text = "P1 - " + String(scoreP1) + " | " + String(scoreP2) + " - P2";
     gameStarted = false;
-    printTextOnScreen(text, 2000);
+    printTextOnScreen(text, 2000, 1);
     gameStarted = true;
   }
 }
