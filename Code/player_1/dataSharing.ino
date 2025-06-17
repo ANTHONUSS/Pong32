@@ -63,6 +63,14 @@ void onDataRecv(const esp_now_recv_info_t *info, const uint8_t *incomingData, in
 void onId2Recieved(){
   scoreP1++;
 
+  //cleia
+  if(infini){
+    scoreP1=0;
+    scoreP2=0;
+    gameStarted = false;
+    infini=false;
+    printTextOnScreen(convert_temps(), 4000);
+  }
   if(scoreP1 == winScore) {
     String text = "P1 à gagné !";
     scoreP1=0;
@@ -80,6 +88,5 @@ void onId2Recieved(){
     sendBallData();
     gameStarted = true;
   }
-
   
 }

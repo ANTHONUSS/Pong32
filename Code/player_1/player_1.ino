@@ -56,6 +56,10 @@ bool gameStarted = false;
 int scoreP1 = 0;
 int scoreP2 = 0;
 unsigned short int const winScore = 1;
+//cleia
+bool infini=false;
+int temps=0;
+hw_timer_t* timer = NULL;
 
 
 // Pad
@@ -66,10 +70,19 @@ Pad pad;
 #include "balle.h"
 Balle balle;
 
+//Temps écoulé (mode infini)
+void IRAM_ATTR heure_int(){
+  temps++;
+}
+
 
 void setup() {
   //Initialisation
   pinMode(BUTTON_A, INPUT_PULLUP);
+  //cleia
+  pinMode(BUTTON_B, INPUT_PULLUP);
+  timer=timerBegin(1000000);
+  timerAttachInterrupt(timer,&heure_int);  
 
   Serial.begin(115200);
 
@@ -109,6 +122,7 @@ void loop() {
 
     // Draw des elements
     display.clearDisplay();
+    affiche_temps();
     balle.drawBalle();
     pad.drawPad();
     display.display();
@@ -135,6 +149,8 @@ void waitStart(){
 
   while(!gameStarted){
     int buttonInput = !digitalRead(BUTTON_A);
+    //cleia
+    int inputB= !digitalRead(BUTTON_B);
 
     if(buttonInput) {
       sendBallData();
@@ -142,6 +158,13 @@ void waitStart(){
       gameStarted = true;
 
     }
+    //cleia
+    if(inputB){
+      gameStarted=true;
+      infini=true;
+      temps=0;
+    }
+
   }
 }
 
@@ -158,5 +181,15 @@ void printTextOnScreen(String text, int time){
   Serial.println(text);
 
   delay(time);
+}
+
+
+String convert_temps(){
+  return String(temps/60)+":"+String(temps%60);
+}
+
+void affiche_temps(){
+  display.setCursor(100,0);
+  display.print(convert_temps());
 }
 
