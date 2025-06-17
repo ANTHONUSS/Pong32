@@ -59,6 +59,8 @@ void onId1Recieved(){
   balle.setBalleDX(ballMessageRecieved.ballDX);
   balle.setBalleDY(ballMessageRecieved.ballDY);
   balle.setBalleSpeed(ballMessageRecieved.ballSpeed);
+  infini=ballMessageRecieved.modeInfini;
+  temps=0;
 
   gameStarted = true;
 }
@@ -66,7 +68,15 @@ void onId1Recieved(){
 void onId2Recieved(){
   scoreP2++;
 
-  if(scoreP2 == winScore) {
+  if(infini){
+    scoreP1=0;
+    scoreP2=0;
+    gameStarted = false;
+    infini=false;
+    printTextOnScreen(convert_temps(), 2000);
+
+    waitStart();
+  } else if(scoreP2 == winScore) {
     String text = "P2 a gagne !";
     scoreP1=0;
     scoreP2=0;

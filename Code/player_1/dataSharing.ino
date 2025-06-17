@@ -20,6 +20,7 @@ void sendBallData(){
   ballMessageSent.ballDX = balle.getBalleDX();
   ballMessageSent.ballDY = balle.getBalleDY();
   ballMessageSent.ballSpeed = balle.getBalleSpeed();
+  ballMessageSent.modeInfini=infini;
   // Envoi à P2
   esp_err_t res = esp_now_send(peersMAC, (uint8_t *)&ballMessageSent, sizeof(ballMessageSent));
   if (res != ESP_OK) {
@@ -63,8 +64,16 @@ void onDataRecv(const esp_now_recv_info_t *info, const uint8_t *incomingData, in
 void onId2Recieved(){
   scoreP1++;
 
-  if(scoreP1 == winScore) {
-    String text = "P1 e gagne !";
+  if(infini) {
+    scoreP1=0;
+    scoreP2=0;
+    gameStarted = false;
+    infini=false;
+    printTextOnScreen(convert_temps(), 2000);
+    waitStart();
+    
+  } else if(scoreP1 == winScore) {
+    String text = "P1 à gagné !";
     scoreP1=0;
     scoreP2=0;
     gameStarted = false;
@@ -80,6 +89,5 @@ void onId2Recieved(){
     sendBallData();
     gameStarted = true;
   }
-
   
 }

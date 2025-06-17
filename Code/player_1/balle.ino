@@ -47,14 +47,22 @@ void Balle::verifiRebondsPad(){
   if(ballX-ballRadius <= pad.getPadX()+pad.getPadWidth()) {
     
     if(ballY + ballRadius >= pad.getPadY() &&
-      ballY - ballRadius <= pad.getPadY() + pad.getPadHeight()){
+        ballY - ballRadius <= pad.getPadY() + pad.getPadHeight()){
+
       ballDX*=-1;
     } else {
       
       scoreP2++;
       sendWinData();
 
-      if(scoreP2 == winScore) {
+      if(infini){
+        scoreP1=0;
+        scoreP2=0;
+        gameStarted = false;
+        infini=false;
+        printTextOnScreen(convert_temps(), 2000);
+        waitStart();
+      }else if(scoreP2 == winScore) {
         String text = "P2 à gagné !";
         scoreP1=0;
         scoreP2=0;
@@ -64,8 +72,8 @@ void Balle::verifiRebondsPad(){
         gameStarted = false;
         printTextOnScreen(text, 4000, 1);
 
-
         waitStart();
+        
       } else {
         ballX=64;
         ballDX=0;
