@@ -41,8 +41,8 @@ Si jamais vous possédez un **GROVE Shield** comme sur l'image précédente, vou
 
 - [L'IDE Arduino](https://www.arduino.cc/en/software/) (ou tout autre IDE qui supporte les ESP32).
 - [Les drivers pour le protocole UART](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers).
-- Les librairies utilisées par le code Arduino présentes dans le dépôt Gitlab.
-- Le code des 2 ESP32 (`player_1` et `player_2`) également présents dans le dépôt Gitlab.
+- Les librairies utilisées par le code Arduino présentes dans le dépôt GitHub.
+- Le code des 2 ESP32 (`player_1` et `player_2`) également présents dans le dépôt GitHub.
 
 ### Étapes d'installation :
 1. Ouvrez l'IDE Arduino, allez dans **Board Manager** puis tapez `ESP32`, installez le premier résultat.
