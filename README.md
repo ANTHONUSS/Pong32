@@ -1,3 +1,8 @@
+# Projet Scolaire
+Ce projet est un projet scolaire effectué dans le cadre d'une SAE à l'IUT Lyon1 de Bourg-en-Bresse.
+
+---
+
 # Présentation du projet
 
 Ce projet est un jeu de **Pong** jouable à deux joueurs sur deux **ESP32** distincts.
